@@ -16,7 +16,7 @@ export function MovingStrip({
     { title: "Inexra Research", symbol: "&", sub: "Analytics." },
     { title: "Survey Sample", symbol: "&", sub: "Fieldwork." },
     { title: "Targeted B2B", symbol: "&", sub: "Consumer Supply." },
-    { title: "Pan-India", symbol: "&", sub: "20+ Global Markets." },
+    { title: "Pan-India", symbol: "&", sub: "50+ Global Markets." },
     { title: "Data Integrity", symbol: "&", sub: "Quality Validation." },
   ];
 

@@ -7,7 +7,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 export const metadata: Metadata = {
   title: "Global Reach & Multi-country Sample | Inexra Research & Analytics",
   description:
-    "Multi-country survey sample across India and 20+ international markets. Global research sample supply subject to target-audience feasibility.",
+    "Multi-country survey sample across India and 50+ international markets. Global research sample supply subject to target-audience feasibility.",
 };
 
 export default function GlobalReachPage() {
@@ -16,7 +16,7 @@ export default function GlobalReachPage() {
       <PageHero
         overline="International Coverage"
         headline="One research requirement. Multiple global markets."
-        subtext="Inexra coordinates multi-country survey sample across India and 20+ key international markets, subject to target-audience availability and feasibility."
+        subtext="Inexra coordinates multi-country survey sample across India and 50+ key international markets, subject to target-audience availability and feasibility."
         breadcrumbs={[{ label: "Global Reach" }]}
       />
 

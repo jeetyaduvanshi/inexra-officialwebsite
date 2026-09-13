@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 const solutionsMenu = [
   { label: "B2B Sample", href: "/b2b", desc: "Decision-makers & verified professionals" },
   { label: "Consumer Sample", href: "/consumer", desc: "Targeted audience & demographic recruitment" },
-  { label: "Global / Multi-country", href: "/global-reach", desc: "Pan-India & 20+ international markets" },
+  { label: "Global / Multi-country", href: "/global-reach", desc: "Pan-India & 50+ international markets" },
 ];
 
 const navItems = [

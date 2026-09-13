@@ -16,7 +16,7 @@ export default function ConsumerPage() {
       <PageHero
         overline="Consumer Sample Supply"
         headline="The right consumers for your brand and market research."
-        subtext="We recruit consumer respondents matching your exact demographic, geographic, and behavioral criteria — across India and 20+ international markets."
+        subtext="We recruit consumer respondents matching your exact demographic, geographic, and behavioral criteria — across India and 50+ international markets."
         breadcrumbs={[{ label: "Consumer Sample" }]}
       />
 

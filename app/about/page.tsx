@@ -25,7 +25,7 @@ const pillars = [
   {
     icon: Globe,
     title: "Pan-India & Global Reach",
-    desc: "In-depth respondent availability across India Tier 1-3 cities, plus verified reach across 20+ international markets.",
+    desc: "In-depth respondent availability across India Tier 1-3 cities, plus verified reach across 50+ international markets.",
   },
   {
     icon: Users,
@@ -90,16 +90,16 @@ export default function AboutPage() {
                 <div className="grid grid-cols-2 gap-5 pt-2">
                   <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
                     <span className="text-3xl lg:text-4xl font-extrabold text-[#1A365D] block">
-                      1,000+
+                      Up to 1,000
                     </span>
                     <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1 block">
-                      Completes / Study
+                      Completes per Project
                     </span>
                   </div>
 
                   <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
                     <span className="text-3xl lg:text-4xl font-extrabold text-[#0D9488] block">
-                      20+
+                      50+
                     </span>
                     <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1 block">
                       Global Markets

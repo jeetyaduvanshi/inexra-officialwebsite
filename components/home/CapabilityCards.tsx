@@ -19,7 +19,7 @@ const capabilities = [
   {
     icon: Globe,
     title: "Multi-Country Reach",
-    desc: "Coordinated sample fielding across India and 20+ global markets, evaluated on a market-by-market feasibility basis.",
+    desc: "Coordinated sample fielding across India and 50+ global markets, evaluated on a market-by-market feasibility basis.",
   },
   {
     icon: BarChart3,

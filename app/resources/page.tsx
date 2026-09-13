@@ -16,11 +16,11 @@ const faqs = [
   },
   {
     q: "How many completes can Inexra deliver per project?",
-    a: "We support projects requiring up to 1,000 verified completes per study across consumer and professional audiences. For higher volumes or longitudinal waves, please reach out so our team can evaluate tiered feasibility and delivery windows.",
+    a: "We support projects requiring up to 1,000 verified completes per project across consumer and professional audiences. For higher volumes or longitudinal waves, please reach out so our team can evaluate tiered feasibility and delivery windows.",
   },
   {
     q: "What markets does Inexra cover?",
-    a: "We provide comprehensive pan-India coverage across urban and rural zones, Tier 1, 2, and 3 cities, and multilingual respondent pools. We also support 20+ international markets subject to target-audience availability. Contact us for market-specific feasibility.",
+    a: "We provide comprehensive pan-India coverage across urban and rural zones, Tier 1, 2, and 3 cities, and multilingual respondent pools. We also support 50+ international markets subject to target-audience availability. Contact us for market-specific feasibility.",
   },
   {
     q: "How do you handle B2B respondents?",

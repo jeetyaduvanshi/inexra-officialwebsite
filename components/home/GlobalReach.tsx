@@ -18,7 +18,7 @@ export function GlobalReach() {
             <SectionHeader
               overline="Global Sample Reach"
               headline="One brief. Cross-market execution."
-              subtext="Inexra coordinates multi-country survey fielding across India and 20+ key global markets — managing market-specific incidence rates and feasibility under a unified project framework."
+              subtext="Inexra coordinates multi-country survey fielding across India and 50+ key global markets — managing market-specific incidence rates and feasibility under a unified project framework."
             />
 
             <div className="space-y-4 pt-2">
@@ -74,7 +74,7 @@ export function GlobalReach() {
                   </div>
                 </div>
                 <span className="text-xs font-mono font-bold text-[#0D9488] bg-teal-50 px-3 py-1 rounded-full border border-teal-100">
-                  20+ Markets
+                  50+ Markets
                 </span>
               </div>
 

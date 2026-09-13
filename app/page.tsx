@@ -13,7 +13,7 @@ import { PilotCTA } from "@/components/home/PilotCTA";
 export const metadata: Metadata = {
   title: "Inexra Research & Analytics | Survey Sample & Respondent Recruitment",
   description:
-    "Inexra provides targeted consumer and B2B survey sample across India and 20+ international markets. Partner with us for your research sample needs.",
+    "Inexra provides targeted consumer and B2B survey sample across India and 50+ international markets. Partner with us for your research sample needs.",
   openGraph: {
     title: "Inexra Research & Analytics | Survey Sample & Respondent Recruitment",
     description:

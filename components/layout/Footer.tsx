@@ -45,7 +45,7 @@ export function Footer() {
             </Link>
 
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
-              Inexra Research &amp; Analytics delivers verified consumer and B2B survey sample across India and 20+ international markets — connecting research teams with the respondents they need.
+              Inexra Research &amp; Analytics delivers verified consumer and B2B survey sample across India and 50+ international markets — connecting research teams with the respondents they need.
             </p>
 
             <div className="pt-2">

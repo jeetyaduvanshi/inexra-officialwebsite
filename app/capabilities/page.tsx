@@ -17,7 +17,7 @@ export default function CapabilitiesPage() {
       <PageHero
         overline="Capabilities Overview"
         headline="Full-spectrum sample supply. High-precision fielding."
-        subtext="Eight specialized capabilities built around targeted recruitment, strict data verification, and flexible fielding workflows across India and 20+ global markets."
+        subtext="Eight specialized capabilities built around targeted recruitment, strict data verification, and flexible fielding workflows across India and 50+ global markets."
         breadcrumbs={[{ label: "Capabilities" }]}
       />
 
