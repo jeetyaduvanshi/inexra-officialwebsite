@@ -1,0 +1,491 @@
+/* Google Fonts — JetBrains Mono for data labels */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@import "tailwindcss";
+
+/* ============================================================
+   INEXRA RESEARCH & ANALYTICS — DESIGN SYSTEM
+   Brand: Navy #1A365D | Teal #4FD1C5
+   Typography: Geist Sans (editorial, bold) + JetBrains Mono (data)
+   ============================================================ */
+
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  /* Brand Colors */
+  --inexra-navy: #1A365D;
+  --inexra-navy-dark: #0F2344;
+  --inexra-dark: #0B1C30;
+  --inexra-teal: #4FD1C5;
+  --inexra-teal-dark: #38B2AC;
+  --inexra-teal-light: rgba(79, 209, 197, 0.12);
+
+  /* Surfaces */
+  --inexra-white: #FFFFFF;
+  --inexra-surface: #F8FAFC;
+  --inexra-surface-low: #F1F5F9;
+  --inexra-border: #E2E8F0;
+  --inexra-border-strong: #CBD5E1;
+
+  /* Text */
+  --inexra-text-primary: #0B1C30;
+  --inexra-text-secondary: #475569;
+  --inexra-text-muted: #94A3B8;
+  --inexra-text-on-dark: #F8FAFC;
+  --inexra-text-on-dark-secondary: rgba(248, 250, 252, 0.70);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02);
+  --shadow-card: 0 4px 12px -2px rgba(26, 54, 93, 0.08);
+  --shadow-hover-teal: 0 0 0 1px #4FD1C5, 0 4px 20px -4px rgba(79, 209, 197, 0.25);
+  --shadow-modal: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 10px 10px -5px rgba(15, 23, 42, 0.04);
+
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-base: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-pill: 9999px;
+
+  /* Spacing (8pt grid) */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+  --space-32: 8rem;     /* 128px */
+
+  /* Section Padding */
+  --section-y: var(--space-24);      /* 96px desktop */
+  --section-y-md: var(--space-16);   /* 64px tablet */
+  --section-y-sm: var(--space-12);   /* 48px mobile */
+}
+
+/* ============================================================
+   TYPOGRAPHY SYSTEM — Editorial, Bold, Clean
+   ============================================================ */
+
+/* Utility classes for the type scale */
+.text-display-hero {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);  /* 40px → 72px */
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+.text-display-lg {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);  /* 32px → 56px */
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+.text-headline-lg {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);  /* 28px → 40px */
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.text-headline-md {
+  font-size: clamp(1.375rem, 2.2vw, 1.75rem);  /* 22px → 28px */
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.text-headline-sm {
+  font-size: 1.25rem;  /* 20px */
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+}
+
+.text-body-lg {
+  font-size: 1.125rem;  /* 18px */
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: -0.01em;
+}
+
+.text-body-md {
+  font-size: 1rem;  /* 16px */
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: -0.005em;
+}
+
+.text-body-sm {
+  font-size: 0.875rem;  /* 14px */
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Category / Overline Label — used above section headings */
+.text-overline {
+  font-size: 0.6875rem;  /* 11px */
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--inexra-teal);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+/* Data / Mono — for stats, chips, status */
+.text-data-mono {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.8125rem;  /* 13px */
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.text-data-mono-lg {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 1.5rem;  /* 24px */
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--inexra-white);
+  color: var(--inexra-text-primary);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+/* ============================================================
+   LAYOUT UTILITIES
+   ============================================================ */
+.container-inexra {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container-inexra {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-inexra {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+.section-padding {
+  padding-top: var(--section-y-sm);
+  padding-bottom: var(--section-y-sm);
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: var(--section-y-md);
+    padding-bottom: var(--section-y-md);
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding-top: var(--section-y);
+    padding-bottom: var(--section-y);
+  }
+}
+
+/* ============================================================
+   COMPONENT TOKENS
+   ============================================================ */
+
+/* Cards */
+.card-inexra {
+  background-color: var(--inexra-white);
+  border: 1px solid var(--inexra-border);
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+  transition: box-shadow 250ms ease, border-color 250ms ease, transform 250ms ease;
+}
+
+.card-inexra:hover {
+  box-shadow: 0 10px 30px -5px rgba(26, 54, 93, 0.10);
+  border-color: #4FD1C5;
+  transform: translateY(-2px);
+}
+
+/* Buttons — Pill-shaped like Epitome Research */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--inexra-navy);
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: 0.8rem 2rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 200ms ease, transform 150ms ease, box-shadow 200ms ease;
+  white-space: nowrap;
+  text-decoration: none;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+.btn-primary:hover {
+  background-color: var(--inexra-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(26, 54, 93, 0.20);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: var(--inexra-navy);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: 0.8rem 2rem;
+  border-radius: 9999px;
+  border: 1.5px solid var(--inexra-navy);
+  cursor: pointer;
+  transition: background-color 200ms ease, border-color 200ms ease;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background-color: var(--inexra-navy);
+  color: #FFFFFF;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: var(--inexra-navy);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: 0.8rem 2rem;
+  border-radius: 9999px;
+  border: 1px solid var(--inexra-border-strong);
+  cursor: pointer;
+  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  background-color: var(--inexra-navy);
+  color: var(--inexra-white);
+  border-color: var(--inexra-navy);
+}
+
+/* Form inputs */
+.input-inexra {
+  width: 100%;
+  background-color: var(--inexra-white);
+  border: 1px solid var(--inexra-border-strong);
+  border-radius: var(--radius-base);
+  padding: 0.625rem 0.875rem;
+  font-size: 0.9375rem;
+  color: var(--inexra-text-primary);
+  outline: none;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+  font-family: inherit;
+}
+
+.input-inexra:focus {
+  border-color: var(--inexra-navy);
+  box-shadow: 0 0 0 2px rgba(79, 209, 197, 0.35);
+}
+
+.input-inexra::placeholder {
+  color: var(--inexra-text-muted);
+}
+
+/* Badges / Capability Chips */
+.badge-teal {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  background-color: var(--inexra-teal-light);
+  color: #0D9488;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 0.375rem 0.875rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(79, 209, 197, 0.3);
+  white-space: nowrap;
+}
+
+.badge-navy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  background-color: rgba(26, 54, 93, 0.08);
+  color: var(--inexra-navy);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 0.375rem 0.875rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(26, 54, 93, 0.15);
+  white-space: nowrap;
+}
+
+/* Pulse dot for status indicators */
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--inexra-teal);
+  animation: pulse-teal 2s infinite;
+}
+
+@keyframes pulse-teal {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+/* ============================================================
+   SECTION DIVIDERS & ALTERNATING BACKGROUNDS
+   ============================================================ */
+.section-dark {
+  background-color: var(--inexra-navy);
+  color: var(--inexra-text-on-dark);
+}
+
+.section-darker {
+  background-color: var(--inexra-dark);
+  color: var(--inexra-text-on-dark);
+}
+
+.section-surface {
+  background-color: var(--inexra-surface);
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease forwards;
+}
+
+/* Stagger utilities */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+
+/* Scroll reveal (add via JS Intersection Observer) */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-fade {
+  opacity: 0;
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
+}
+
+.reveal-fade.revealed {
+  opacity: 1;
+}
+
+/* Infinite Marquee Ticker */
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ticker {
+  animation: ticker 35s linear infinite;
+  display: flex;
+  width: max-content;
+}
+
+/* ============================================================
+   HERO GRID PATTERN
+   ============================================================ */
+.hero-grid-pattern {
+  background-image:
+    linear-gradient(rgba(79, 209, 197, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 209, 197, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--inexra-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--inexra-border-strong);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--inexra-navy);
+}
