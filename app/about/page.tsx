@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/shared/PageHero";
 import { MovingStrip } from "@/components/shared/MovingStrip";
-import { FoundersSection } from "@/components/about/FoundersSection";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, ShieldCheck, Globe, Users, Target } from "lucide-react";
 
@@ -186,9 +185,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      {/* Leadership & Founders Section */}
-      <FoundersSection />
     </>
   );
 }

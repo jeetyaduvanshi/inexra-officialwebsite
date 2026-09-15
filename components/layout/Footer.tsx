@@ -5,7 +5,6 @@ import { Mail, ArrowRight } from "lucide-react";
 const footerLinks = {
   Company: [
     { label: "About Inexra", href: "/about" },
-    { label: "Founders & Leadership", href: "/about#founders" },
     { label: "Our Capabilities", href: "/capabilities" },
     { label: "Quality & Validation", href: "/quality" },
     { label: "Resources & FAQs", href: "/resources" },
