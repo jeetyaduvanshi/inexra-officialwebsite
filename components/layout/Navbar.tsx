@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -28,6 +29,7 @@ const navItems = [
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
+  const pathname = usePathname();
 
   // Close mobile menu on resize
   useEffect(() => {
@@ -39,6 +41,9 @@ export function Navbar() {
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
+
+  const isActive = (href: string) => pathname === href;
+  const isSolutionsActive = solutionsMenu.some((child) => pathname === child.href);
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-all">
@@ -56,7 +61,7 @@ export function Navbar() {
             />
           </Link>
 
-          {/* Desktop Navigation with Epitome-style bullet dots */}
+          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center">
             {navItems.map((item, index) => (
               <React.Fragment key={item.label}>
@@ -73,7 +78,12 @@ export function Navbar() {
                     onMouseLeave={() => setSolutionsOpen(false)}
                   >
                     <button
-                      className="flex items-center gap-1.5 py-2 px-1 text-[15px] font-medium text-slate-700 hover:text-[#1A365D] transition-colors cursor-pointer"
+                      className={cn(
+                        "relative flex items-center gap-1.5 py-2 px-1 text-[15px] font-medium transition-colors duration-150 cursor-pointer group",
+                        isSolutionsActive
+                          ? "text-[#1A365D] font-semibold"
+                          : "text-slate-700 hover:text-[#1A365D]"
+                      )}
                       onClick={() => setSolutionsOpen(!solutionsOpen)}
                     >
                       {item.label}
@@ -81,6 +91,13 @@ export function Navbar() {
                         className={cn(
                           "w-3.5 h-3.5 text-slate-400 transition-transform duration-200",
                           solutionsOpen && "rotate-180 text-[#1A365D]"
+                        )}
+                      />
+                      {/* Hover underline */}
+                      <span
+                        className={cn(
+                          "absolute bottom-0 left-0 h-0.5 bg-[#0D9488] rounded-full transition-all duration-200",
+                          isSolutionsActive ? "w-full" : "w-0 group-hover:w-full"
                         )}
                       />
                     </button>
@@ -99,9 +116,17 @@ export function Navbar() {
                           key={child.href}
                           href={child.href}
                           onClick={() => setSolutionsOpen(false)}
-                          className="flex flex-col px-4 py-3 rounded-xl hover:bg-slate-50 transition-colors group"
+                          className={cn(
+                            "flex flex-col px-4 py-3 rounded-xl transition-colors group",
+                            pathname === child.href
+                              ? "bg-teal-50 text-[#1A365D]"
+                              : "hover:bg-slate-50"
+                          )}
                         >
-                          <span className="text-sm font-semibold text-slate-800 group-hover:text-[#1A365D]">
+                          <span className={cn(
+                            "text-sm font-semibold",
+                            pathname === child.href ? "text-[#0D9488]" : "text-slate-800 group-hover:text-[#1A365D]"
+                          )}>
                             {child.label}
                           </span>
                           <span className="text-xs text-slate-500 mt-0.5 leading-relaxed">
@@ -114,20 +139,48 @@ export function Navbar() {
                 ) : (
                   <Link
                     href={item.href}
-                    className="py-2 px-1 text-[15px] font-medium text-slate-700 hover:text-[#1A365D] transition-colors"
+                    className={cn(
+                      "relative py-2 px-1 text-[15px] font-medium transition-colors duration-150 group",
+                      isActive(item.href)
+                        ? "text-[#1A365D] font-semibold"
+                        : "text-slate-700 hover:text-[#1A365D]"
+                    )}
                   >
                     {item.label}
+                    {/* Active / hover underline */}
+                    <span
+                      className={cn(
+                        "absolute bottom-0 left-0 h-0.5 bg-[#0D9488] rounded-full transition-all duration-200",
+                        isActive(item.href) ? "w-full" : "w-0 group-hover:w-full"
+                      )}
+                    />
                   </Link>
                 )}
               </React.Fragment>
             ))}
           </nav>
 
-          {/* Desktop Right Actions: Pill Buttons like Epitome */}
+          {/* Desktop Right Actions */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
+              href="/vendors"
+              className={cn(
+                "inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold border transition-all",
+                isActive("/vendors")
+                  ? "border-[#0D9488] text-[#0D9488] bg-teal-50"
+                  : "border-slate-300 text-slate-700 hover:border-[#0D9488] hover:text-[#0D9488]"
+              )}
+            >
+              <span>For Vendors</span>
+            </Link>
+            <Link
               href="/feasibility"
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold bg-[#1A365D] text-white hover:bg-[#0B1C30] transition-all shadow-sm hover:shadow-md active:scale-98"
+              className={cn(
+                "inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-sm hover:shadow-md active:scale-98",
+                isActive("/feasibility")
+                  ? "bg-[#0B1C30] text-white"
+                  : "bg-[#1A365D] text-white hover:bg-[#0B1C30]"
+              )}
             >
               <span>Request Feasibility</span>
               <ArrowRight className="w-3.5 h-3.5 text-[#4FD1C5]" />
@@ -152,7 +205,10 @@ export function Navbar() {
             {navItems.map((item) =>
               item.children ? (
                 <div key={item.label} className="space-y-2 pt-1 pb-2 border-b border-slate-100">
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                  <span className={cn(
+                    "text-xs font-bold uppercase tracking-wider",
+                    isSolutionsActive ? "text-[#0D9488]" : "text-slate-400"
+                  )}>
                     {item.label}
                   </span>
                   <div className="pl-3 space-y-2">
@@ -161,7 +217,12 @@ export function Navbar() {
                         key={child.href}
                         href={child.href}
                         onClick={() => setMobileOpen(false)}
-                        className="block text-sm font-medium text-slate-700 hover:text-[#1A365D]"
+                        className={cn(
+                          "block text-sm font-medium transition-colors",
+                          pathname === child.href
+                            ? "text-[#0D9488] font-semibold"
+                            : "text-slate-700 hover:text-[#1A365D]"
+                        )}
                       >
                         {child.label}
                       </Link>
@@ -173,7 +234,12 @@ export function Navbar() {
                   key={item.label}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className="block py-2 text-base font-semibold text-slate-800 hover:text-[#1A365D] border-b border-slate-100 last:border-0"
+                  className={cn(
+                    "block py-2 text-base font-semibold border-b border-slate-100 last:border-0 transition-colors",
+                    isActive(item.href)
+                      ? "text-[#0D9488]"
+                      : "text-slate-800 hover:text-[#1A365D]"
+                  )}
                 >
                   {item.label}
                 </Link>
@@ -181,7 +247,19 @@ export function Navbar() {
             )}
           </div>
 
-          <div className="pt-3">
+          <div className="pt-3 space-y-2">
+            <Link
+              href="/vendors"
+              onClick={() => setMobileOpen(false)}
+              className={cn(
+                "w-full justify-center inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border transition-all",
+                isActive("/vendors")
+                  ? "border-[#0D9488] text-[#0D9488] bg-teal-50"
+                  : "border-slate-300 text-slate-700"
+              )}
+            >
+              <span>Vendor / Partner Network</span>
+            </Link>
             <Link
               href="/feasibility"
               onClick={() => setMobileOpen(false)}
@@ -196,3 +274,6 @@ export function Navbar() {
     </header>
   );
 }
+
+
+

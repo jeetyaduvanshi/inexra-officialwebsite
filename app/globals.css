@@ -3,6 +3,14 @@
 
 @import "tailwindcss";
 
+/* Prevent horizontal overflow / scroll on all pages */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+
 /* ============================================================
    INEXRA RESEARCH & ANALYTICS — DESIGN SYSTEM
    Brand: Navy #1A365D | Teal #4FD1C5

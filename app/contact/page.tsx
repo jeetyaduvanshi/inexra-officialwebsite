@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/shared/PageHero";
 import Link from "next/link";
-import { ArrowRight, Mail, MessageSquare, Users, Package, Clock } from "lucide-react";
+import { ArrowRight, Mail, MessageSquare, Users, Package, Clock, Handshake } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Contact Us | Inexra Research & Analytics",
@@ -17,10 +17,10 @@ const enquiryTypes = [
     href: "/feasibility",
   },
   {
-    icon: Users,
-    label: "Agency Partnership",
-    desc: "Explore a preferred sample supply partnership or ongoing multi-wave agreement.",
-    href: "mailto:info@inexraresearch.com?subject=Partnership Enquiry",
+    icon: Handshake,
+    label: "Vendor / Panel Partner",
+    desc: "Register as a sample vendor or panel supply partner. We allocate B2B, Consumer, and HCP projects to vetted partners.",
+    href: "/vendors",
   },
   {
     icon: ArrowRight,

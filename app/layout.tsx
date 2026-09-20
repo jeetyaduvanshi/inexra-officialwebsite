@@ -83,7 +83,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
         style={{ fontFamily: "var(--font-geist-sans), system-ui, sans-serif" }}
       >
         <ScrollObserver />

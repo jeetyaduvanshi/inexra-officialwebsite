@@ -18,7 +18,7 @@ const footerLinks = {
   ],
   "Work With Us": [
     { label: "Request Feasibility", href: "/feasibility" },
-    { label: "Partner With Inexra", href: "/contact?type=partnership" },
+    { label: "Become a Sample Vendor", href: "/vendors" },
     { label: "Start a Pilot Wave", href: "/contact?type=pilot" },
     { label: "Panel & Sample Inquiries", href: "/contact" },
   ],
