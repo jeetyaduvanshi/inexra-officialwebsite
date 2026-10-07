@@ -19,6 +19,7 @@ const footerLinks = {
   "Work With Us": [
     { label: "Request Feasibility", href: "/feasibility" },
     { label: "Become a Sample Vendor", href: "/vendors" },
+    { label: "Join Our Survey Panel", href: "/join-panel" },
     { label: "Start a Pilot Wave", href: "/contact?type=pilot" },
     { label: "Panel & Sample Inquiries", href: "/contact" },
   ],

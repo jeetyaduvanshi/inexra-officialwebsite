@@ -163,6 +163,17 @@ export function Navbar() {
           {/* Desktop Right Actions */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
+              href="/join-panel"
+              className={cn(
+                "text-sm font-semibold transition-colors px-2",
+                isActive("/join-panel")
+                  ? "text-[#0D9488]"
+                  : "text-slate-600 hover:text-[#0D9488]"
+              )}
+            >
+              Take Surveys
+            </Link>
+            <Link
               href="/vendors"
               className={cn(
                 "inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold border transition-all",
@@ -248,6 +259,18 @@ export function Navbar() {
           </div>
 
           <div className="pt-3 space-y-2">
+            <Link
+              href="/join-panel"
+              onClick={() => setMobileOpen(false)}
+              className={cn(
+                "w-full justify-center inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border transition-all",
+                isActive("/join-panel")
+                  ? "border-[#0D9488] text-[#0D9488] bg-teal-50"
+                  : "border-slate-300 text-slate-700"
+              )}
+            >
+              <span>Join Our Survey Panel</span>
+            </Link>
             <Link
               href="/vendors"
               onClick={() => setMobileOpen(false)}

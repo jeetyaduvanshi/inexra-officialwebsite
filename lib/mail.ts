@@ -411,3 +411,179 @@ export async function sendVendorEmail(data: VendorData) {
 
   return adminMail;
 }
+
+// ─── Respondent / Survey Panel Registration ────────────────────────────────
+
+export interface RespondentData {
+  fullName: string;
+  email: string;
+  phone?: string;
+  gender: string;
+  ageGroup: string;
+  country: string;
+  city: string;
+  education?: string;
+  employmentStatus: string;
+  industry?: string;
+  jobTitle?: string;
+  companySize?: string;
+  householdIncome?: string;
+  interests?: string;
+  surveyModes?: string;
+  languages?: string;
+  referral?: string;
+  marketingConsent?: boolean;
+}
+
+/** Escape user-supplied text before injecting it into HTML email templates. */
+function esc(value: string | undefined | null): string {
+  if (!value) return "";
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+export async function sendRespondentEmail(data: RespondentData) {
+  const recipient = process.env.NOTIFICATION_RECEIVER || "info@inexraresearch.com";
+  const sender = process.env.ZOHO_USER || "info@inexraresearch.com";
+
+  const row = (label: string, value?: string) =>
+    value
+      ? `<div class="table-row"><div class="table-label">${label}:</div><div class="table-value">${esc(value)}</div></div>`
+      : "";
+
+  // 1. Admin Notification Email
+  const adminHtml = `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8">
+        <style>
+          body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8fafc; color: #1e293b; margin: 0; padding: 24px; }
+          .container { max-width: 650px; margin: 0 auto; background: #ffffff; border-radius: 16px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+          .header { background: linear-gradient(135deg, #0B1C30 0%, #1A365D 100%); padding: 32px 28px; text-align: left; }
+          .header h1 { color: #ffffff; margin: 0 0 6px 0; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+          .header p { color: #4FD1C5; margin: 0; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+          .content { padding: 32px 28px; }
+          .badge { display: inline-block; padding: 4px 12px; border-radius: 9999px; background: #f5f3ff; color: #6d28d9; font-weight: 600; font-size: 12px; margin-bottom: 20px; }
+          .section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #0D9488; margin-top: 24px; margin-bottom: 12px; border-bottom: 1px solid #f1f5f9; padding-bottom: 6px; }
+          .table-row { display: flex; padding: 8px 0; border-bottom: 1px solid #f8fafc; }
+          .table-label { width: 38%; font-weight: 600; color: #64748b; font-size: 13px; }
+          .table-value { width: 62%; font-weight: 500; color: #0f172a; font-size: 14px; word-break: break-word; }
+          .footer { background: #f8fafc; border-top: 1px solid #e2e8f0; padding: 18px 28px; font-size: 12px; color: #94a3b8; text-align: center; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <p>Inexra Research &amp; Analytics</p>
+            <h1>New Survey Panel Registration</h1>
+          </div>
+          <div class="content">
+            <div class="badge">🙋 Respondent Sign-up</div>
+
+            <div class="section-title">Personal Details</div>
+            ${row("Full Name", data.fullName)}
+            <div class="table-row"><div class="table-label">Email:</div><div class="table-value"><a href="mailto:${esc(data.email)}" style="color: #0D9488; text-decoration: none; font-weight: 600;">${esc(data.email)}</a></div></div>
+            ${row("Phone / WhatsApp", data.phone)}
+            ${row("Gender", data.gender)}
+            ${row("Age Group", data.ageGroup)}
+            ${row("Location", `${data.city}, ${data.country}`)}
+            ${row("Languages", data.languages)}
+
+            <div class="section-title">Education &amp; Professional Profile</div>
+            ${row("Education", data.education)}
+            ${row("Employment Status", data.employmentStatus)}
+            ${row("Industry", data.industry)}
+            ${row("Job Title / Role", data.jobTitle)}
+            ${row("Company Size", data.companySize)}
+            ${row("Household Income", data.householdIncome)}
+
+            <div class="section-title">Survey Preferences</div>
+            ${row("Interests / Topics", data.interests)}
+            ${row("Preferred Survey Modes", data.surveyModes)}
+            ${row("Heard About Us Via", data.referral)}
+            ${row("Marketing Consent", data.marketingConsent ? "Yes" : "No")}
+          </div>
+          <div class="footer">
+            Panel Registration via Inexra Website (inexraresearch.com) &bull; ${new Date().toUTCString()}
+          </div>
+        </div>
+      </body>
+    </html>
+  `;
+
+  const adminMail = await transporter.sendMail({
+    from: `"Inexra Panel Desk" <${sender}>`,
+    to: recipient,
+    replyTo: data.email,
+    subject: `[New Panelist] ${data.fullName} — ${data.employmentStatus} (${data.city}, ${data.country})`,
+    html: adminHtml,
+  });
+
+  // 2. Respondent Welcome Email
+  try {
+    const respondentHtml = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="utf-8">
+          <style>
+            body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8fafc; color: #1e293b; margin: 0; padding: 24px; }
+            .container { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 16px; border: 1px solid #e2e8f0; overflow: hidden; }
+            .header { background: #0B1C30; padding: 32px 28px; text-align: left; }
+            .header h1 { color: #ffffff; margin: 0 0 6px 0; font-size: 20px; font-weight: 700; }
+            .header p { color: #4FD1C5; margin: 0; font-size: 13px; font-weight: 600; text-transform: uppercase; }
+            .content { padding: 32px 28px; line-height: 1.6; }
+            .highlight { background: #f0fdfa; border-left: 4px solid #0D9488; padding: 14px 18px; border-radius: 4px; margin: 20px 0; }
+            .footer { background: #f8fafc; border-top: 1px solid #e2e8f0; padding: 20px 28px; font-size: 12px; color: #64748b; text-align: center; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <p>Inexra Research &amp; Analytics — Survey Panel</p>
+              <h1>Welcome to the Inexra Panel!</h1>
+            </div>
+            <div class="content">
+              <p>Hi <strong>${esc(data.fullName)}</strong>,</p>
+              <p>Thank you for registering with the <strong>Inexra Survey Panel</strong>. Your profile has been received successfully.</p>
+
+              <div class="highlight">
+                <p style="margin: 0; font-weight: 600; color: #0f766e;">What happens next?</p>
+                <p style="margin: 4px 0 0 0; font-size: 14px; color: #115e59;">
+                  We match surveys to your profile. When a study fits you, we'll send an invitation to <strong>${esc(data.email)}</strong>. Participation is always voluntary, and your responses are kept strictly confidential.
+                </p>
+              </div>
+
+              <p style="font-size: 14px; color: #475569;">
+                Please add <a href="mailto:${esc(sender)}" style="color: #0D9488;">${esc(sender)}</a> to your contacts so our invitations don't land in spam. To update your details or unsubscribe at any time, simply reply to this email.
+              </p>
+              <br>
+              <p style="margin: 0; font-weight: 600; color: #0B1C30;">Best regards,</p>
+              <p style="margin: 0; color: #64748b; font-size: 14px;">The Inexra Panel Team</p>
+            </div>
+            <div class="footer">
+              Inexra Research &amp; Analytics &bull; Your opinion shapes better products &amp; services<br>
+              <a href="https://inexraresearch.com" style="color: #0D9488; text-decoration: none;">www.inexraresearch.com</a>
+            </div>
+          </div>
+        </body>
+      </html>
+    `;
+
+    await transporter.sendMail({
+      from: `"Inexra Research & Analytics" <${sender}>`,
+      to: data.email,
+      subject: `Welcome to the Inexra Survey Panel, ${data.fullName.split(" ")[0]}!`,
+      html: respondentHtml,
+    });
+  } catch (clientErr) {
+    console.warn("Could not send respondent welcome email:", clientErr);
+  }
+
+  return adminMail;
+}
