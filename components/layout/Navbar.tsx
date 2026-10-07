@@ -66,7 +66,7 @@ export function Navbar() {
             {navItems.map((item, index) => (
               <React.Fragment key={item.label}>
                 {index > 0 && (
-                  <span className="text-slate-300 mx-3 text-xs select-none" aria-hidden="true">
+                  <span className="text-slate-300 mx-2 xl:mx-3 text-xs select-none" aria-hidden="true">
                     •
                   </span>
                 )}
@@ -161,11 +161,11 @@ export function Navbar() {
           </nav>
 
           {/* Desktop Right Actions */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3 shrink-0 ml-4 xl:ml-6 pl-4 xl:pl-6 border-l border-slate-200 whitespace-nowrap">
             <Link
               href="/join-panel"
               className={cn(
-                "text-sm font-semibold transition-colors px-2",
+                "hidden xl:inline text-sm font-semibold transition-colors whitespace-nowrap",
                 isActive("/join-panel")
                   ? "text-[#0D9488]"
                   : "text-slate-600 hover:text-[#0D9488]"
@@ -176,7 +176,7 @@ export function Navbar() {
             <Link
               href="/vendors"
               className={cn(
-                "inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold border transition-all",
+                "inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold border transition-all whitespace-nowrap",
                 isActive("/vendors")
                   ? "border-[#0D9488] text-[#0D9488] bg-teal-50"
                   : "border-slate-300 text-slate-700 hover:border-[#0D9488] hover:text-[#0D9488]"
@@ -187,7 +187,7 @@ export function Navbar() {
             <Link
               href="/feasibility"
               className={cn(
-                "inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-sm hover:shadow-md active:scale-98",
+                "inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-sm hover:shadow-md active:scale-98 whitespace-nowrap",
                 isActive("/feasibility")
                   ? "bg-[#0B1C30] text-white"
                   : "bg-[#1A365D] text-white hover:bg-[#0B1C30]"

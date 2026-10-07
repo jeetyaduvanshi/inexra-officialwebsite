@@ -429,7 +429,6 @@ export interface RespondentData {
   companySize?: string;
   householdIncome?: string;
   interests?: string;
-  surveyModes?: string;
   languages?: string;
   referral?: string;
   marketingConsent?: boolean;
@@ -504,7 +503,6 @@ export async function sendRespondentEmail(data: RespondentData) {
 
             <div class="section-title">Survey Preferences</div>
             ${row("Interests / Topics", data.interests)}
-            ${row("Preferred Survey Modes", data.surveyModes)}
             ${row("Heard About Us Via", data.referral)}
             ${row("Marketing Consent", data.marketingConsent ? "Yes" : "No")}
           </div>

@@ -32,7 +32,6 @@ export async function POST(req: Request) {
       companySize: clean(body.companySize),
       householdIncome: clean(body.householdIncome),
       interests: clean(body.interests),
-      surveyModes: clean(body.surveyModes),
       languages: clean(body.languages),
       referral: clean(body.referral),
       marketingConsent: Boolean(body.marketingConsent),

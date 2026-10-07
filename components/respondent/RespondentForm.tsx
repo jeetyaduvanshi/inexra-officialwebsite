@@ -87,14 +87,6 @@ const INTERESTS = [
   "Education & Careers",
 ];
 
-const SURVEY_MODES = [
-  "Online Surveys",
-  "Phone Interviews",
-  "Video / In-depth Interviews",
-  "Focus Groups",
-  "In-person / Product Testing",
-];
-
 const inputCls =
   "w-full px-4 py-3.5 rounded-xl border border-slate-300 bg-white text-slate-800 focus:outline-none focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 transition-all text-sm font-medium placeholder:text-slate-400";
 const labelCls = "block text-sm font-semibold text-slate-800 mb-2";
@@ -165,7 +157,6 @@ export function RespondentForm() {
   const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState(initialForm);
   const [interests, setInterests] = useState<string[]>([]);
-  const [surveyModes, setSurveyModes] = useState<string[]>(["Online Surveys"]);
   const [ageConfirm, setAgeConfirm] = useState(false);
   const [privacyConsent, setPrivacyConsent] = useState(false);
   const [marketingConsent, setMarketingConsent] = useState(false);
@@ -213,7 +204,6 @@ export function RespondentForm() {
           jobTitle: isWorking ? formData.jobTitle : "",
           companySize: isWorking ? formData.companySize : "",
           interests: interests.join(", "),
-          surveyModes: surveyModes.join(", "),
           ageConfirm,
           privacyConsent,
           marketingConsent,
@@ -239,7 +229,6 @@ export function RespondentForm() {
   const handleReset = () => {
     setFormData(initialForm);
     setInterests([]);
-    setSurveyModes(["Online Surveys"]);
     setAgeConfirm(false);
     setPrivacyConsent(false);
     setMarketingConsent(false);
@@ -627,20 +616,6 @@ export function RespondentForm() {
                   label={i}
                   active={interests.includes(i)}
                   onClick={() => toggle(interests, setInterests, i)}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <span className={labelCls}>How Would You Like to Participate?</span>
-            <div className="flex flex-wrap gap-2">
-              {SURVEY_MODES.map((m) => (
-                <Chip
-                  key={m}
-                  label={m}
-                  active={surveyModes.includes(m)}
-                  onClick={() => toggle(surveyModes, setSurveyModes, m)}
                 />
               ))}
             </div>
